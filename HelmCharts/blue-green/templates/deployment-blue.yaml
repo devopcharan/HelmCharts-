@@ -27,5 +27,5 @@ spec:
       volumes:
         - name: wwwdata-volume
           configMap:
-            name: {{ template "blue-green.fullname" . }}
+            name: {{ include "java-app.fullname" . }}
 {{ end }}
