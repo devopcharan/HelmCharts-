@@ -2,21 +2,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ $fullName }}-default-http-backend
+  name: {{ include "java-app.fullname" . }}-default-http-backend
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ $fullName }}-default-http-backend
+        app: {{{- include "java-app.labels" . | nindent 4 }}-default-http-backend
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-      - name: {{ $fullName }}-default-http-backend
+      - name: {{ .Chart.Name }}-default-http-backend
         # Any image is permissable as long as:
         # 1. It serves a 404 page at /
         # 2. It serves 200 on a /healthz endpoint
-        image: gcr.io/google_containers/defaultbackend:1.0
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         livenessProbe:
           httpGet:
             path: /healthz
@@ -30,10 +30,10 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ $fullName }}-default-http-backend
+  name: name: {{ include "java-app.fullname" . }}-default-http-backend
 spec:
   selector:
-    app: {{ $fullName }}-default-http-backend
+    app: {{- include "java-app.labels" . | nindent 4 }}-default-http-backend
   ports:
     - protocol: TCP
       port: 80
