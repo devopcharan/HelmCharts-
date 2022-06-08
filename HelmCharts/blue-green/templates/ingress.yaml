@@ -2,10 +2,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}-ingress
+  name: {{ include "java-app.fullname" . }}-ingress
   labels:
-    app: {{ template "blue-green.name" . }}
-    chart: {{ template "blue-green.chart" . }}
+    app: {{- include "java-app.labels" . | nindent 4 }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
 spec:
   rules:
@@ -14,12 +14,12 @@ spec:
       paths:
         - path: /
           backend:
-            serviceName: {{ $fullName }}-service-prod
-            servicePort: http
+            serviceName: {{ include "java-app.fullname" . }}-service-prod
+            servicePort: {{ .Values.service.port }}
   - host: {{ .Values.ingress.stagehostname }}
     http:
       paths:
         - path: /
           backend:
-            serviceName: {{ $fullName }}-service-stage
-            servicePort: http
+            serviceName: {{ include "java-app.fullname" . }}-service-stage
+            servicePort: {{ .Values.service.port }}
