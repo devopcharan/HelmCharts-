@@ -5,7 +5,7 @@ metadata:
   name: {{ $fullName }}-service-stage
   labels:
     app: {{ template "blue-green.name" . }}
-    chart: {{ template "blue-green.chart" . }}
+    chart: {{ template "charanapp.chart" . }}
     release: {{ .Release.Name }}
 spec:
   type: ClusterIP
