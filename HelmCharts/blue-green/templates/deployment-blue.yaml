@@ -6,18 +6,18 @@ metadata:
   labels:
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-    app:  {{- include "java-app.labels" . | nindent 4 }}
+    app: {{- include "java-app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
-        app:  {{- include "java-app.labels" . | nindent 6 }}
+        app: {{- include "java-app.labels" . | nindent 6 }}
         release: {{ .Release.Name }}
         slot: blue
     spec:
       containers:
-        - name:  {{ .Chart.Name }}-blue
+        - name: {{ .Chart.Name }}-blue
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent          
 {{ end }}
