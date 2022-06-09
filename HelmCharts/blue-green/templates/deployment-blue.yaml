@@ -19,5 +19,18 @@ spec:
       containers:
         - name: {{ .Chart.Name }}-blue
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: IfNotPresent          
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          # This (and the volumes section below) mount the config map as a volume.
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              name: wwwdata-volume
+      volumes:
+        - name: wwwdata-volume
+          configMap:
+            name: {{ include "java-app.fullname" . }}
+
 {{- end }}
