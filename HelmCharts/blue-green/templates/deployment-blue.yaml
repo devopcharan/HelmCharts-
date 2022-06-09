@@ -20,4 +20,4 @@ spec:
         - name: {{ .Chart.Name }}-blue
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent          
-{{ end }}
+{{- end }}
