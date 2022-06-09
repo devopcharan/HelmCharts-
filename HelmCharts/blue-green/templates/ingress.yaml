@@ -15,11 +15,11 @@ spec:
         - path: /
           backend:
             serviceName: {{ include "java-app.fullname" . }}-service-prod
-            servicePort: {{ .Values.service.port }}
+            servicePort: 80
   - host: {{ .Values.ingress.stagehostname }}
     http:
       paths:
         - path: /
           backend:
             serviceName: {{ include "java-app.fullname" . }}-service-stage
-            servicePort: {{ .Values.service.port }}
+            servicePort: 80
