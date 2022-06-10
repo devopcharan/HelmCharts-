@@ -1,25 +1,37 @@
-{{- $fullName := .Release.Name -}}
-apiVersion: networking.k8s.io/v1beta1 
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "java-app.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
-  name: {{ include "java-app.fullname" . }}-ingress
+  name: {{ $fullName }}
   labels:
     app: {{- include "java-app.labels" . | nindent 4 }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
 spec:
   rules:
-  - host: {{ .Values.ingress.hostname }}
-    http:
-      paths:
-        - path: /
-          backend:
-            serviceName: {{ include "java-app.fullname" . }}-service-prod
-            servicePort: 80
-  - host: {{ .Values.ingress.stagehostname }}
-    http:
-      paths:
-        - path: /
-          backend:
-            serviceName: {{ include "java-app.fullname" . }}-service-stage
-            servicePort: 80
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ . }}
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+  - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ . }}
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+          {{- end }}
+    {{- end }}
+  {{- end }}
