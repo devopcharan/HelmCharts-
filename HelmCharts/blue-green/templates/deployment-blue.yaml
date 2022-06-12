@@ -11,7 +11,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{- include "java-app.labels" . | nindent 6 }}
+      app: {{- include "java-app.selectorLabels" . | nindent 6 }}
       release: {{ .Release.Name }}
       slot: blue
   template:
