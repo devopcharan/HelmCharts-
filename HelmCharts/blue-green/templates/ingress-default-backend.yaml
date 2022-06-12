@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "charanappblue.fullname" . }}-default-http-backend
+  name: charanapp-default-http-backend
 spec:
   replicas: 1
   selector:
