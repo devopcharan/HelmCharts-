@@ -45,3 +45,4 @@ spec:
               name: https
               protocol: TCP
       terminationGracePeriodSeconds: 60
+{{ end }}      
