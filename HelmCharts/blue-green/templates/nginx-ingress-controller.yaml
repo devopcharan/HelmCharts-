@@ -44,5 +44,4 @@ spec:
             - containerPort: 443
               name: https
               protocol: TCP
-      terminationGracePeriodSeconds: 60
-{{ end }}      
+      terminationGracePeriodSeconds: 60      
