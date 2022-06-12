@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata: 
-  name: {{ include "java-app.fullname" . }}-nginx-ingress-controller
+  name: {{ $fullName }}-nginx-ingress-controller
 spec: 
   replicas: 1
   revisionHistoryLimit: 3
@@ -12,7 +12,7 @@ spec:
         app: {{- include "java-app.labels" . | nindent 8 }}
         chart: {{ .Chart.Name }}-{{ .Chart.Version }}
         release: {{ .Release.Name }}
-        k8s-app: {{ include "java-app.fullname" . }}-nginx-ingress-lb
+        k8s-app: {{ $fullName }}-nginx-ingress-lb
     spec: 
       containers: 
         - args: 
