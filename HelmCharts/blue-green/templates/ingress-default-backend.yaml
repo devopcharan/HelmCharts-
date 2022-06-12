@@ -33,7 +33,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: name: {{ include "java-app.fullname" . }}-default-http-backend
+  name: charanapp-default-http-backend
 spec:
   selector:
     app: {{- include "java-app.labels" . | nindent 4 }}-default-http-backend
