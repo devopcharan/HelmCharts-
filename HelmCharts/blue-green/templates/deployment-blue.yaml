@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{- include "java-app.labels" . | nindent 6 }}
+        app: {{- include "java-app.labels" . | nindent 8 }}
         release: {{ .Release.Name }}
         slot: blue
     spec:
