@@ -4,9 +4,9 @@ kind: Service
 metadata:
   name: {{ include "java-app.fullname" . }}-lb
   labels:
-  app: {{- include "java-app.labels" . | nindent 2 }}
-  chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-  release: {{ .Release.Name }}
+    app: {{- include "java-app.labels" . | nindent 4 }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
 spec:
   type: {{ .Values.service.type }}
   ports:
