@@ -1,11 +1,17 @@
 {{- $fullName := .Release.Name -}}
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata: 
   name: {{ $fullName }}-nginx-ingress-controller
 spec: 
   replicas: 1
   revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: {{- include "java-app.selectorLabels" . | nindent 6 }}
+      chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+      release: {{ .Release.Name }}
+      k8s-app: {{ $fullName }}-nginx-ingress-lb
   template: 
     metadata: 
       labels: 
