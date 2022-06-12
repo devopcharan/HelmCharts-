@@ -1,8 +1,8 @@
 {{- $fullName := .Release.Name -}}
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ $fullName }}-default-http-backend
+  name: {{ include "java-app.fullname" . }}-default-http-backend
 spec:
   replicas: 1
   selector:
