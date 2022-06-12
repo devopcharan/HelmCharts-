@@ -9,7 +9,7 @@ spec:
   template: 
     metadata: 
       labels: 
-        app: {{- include "java-app.labels" . | nindent 4 }}
+        app: {{- include "java-app.labels" . | nindent 8 }}
         chart: {{ .Chart.Name }}-{{ .Chart.Version }}
         release: {{ .Release.Name }}
         k8s-app: {{ include "java-app.fullname" . }}-nginx-ingress-lb
