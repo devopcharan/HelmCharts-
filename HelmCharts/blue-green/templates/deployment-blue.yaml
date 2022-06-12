@@ -9,6 +9,11 @@ metadata:
     app: {{- include "java-app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{- include "java-app.labels" . | nindent 6 }}
+      release: {{ .Release.Name }}
+      slot: blue
   template:
     metadata:
       labels:
