@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{- include "java-app.fullName" }}-nginx-ingress-controller
+  name: {{ include "java-app.fullName" }}-nginx-ingress-controller
 spec:
   replicas: 1
   revisionHistoryLimit: 3
