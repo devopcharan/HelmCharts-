@@ -25,12 +25,4 @@ spec:
         - name: {{ .Chart.Name }}-blue
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
-           # This (and the volumes section below) mount the config map as a volume.
-          volumeMounts:
-            - mountPath: /usr/share/nginx/html
-              name: wwwdata-volume
-      volumes:
-        - name: wwwdata-volume
-          configMap:
-            name: {{ .Release.Name }}
 {{ end }}
