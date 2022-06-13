@@ -6,5 +6,5 @@ metadata:
 data:
   # When the config map is mounted as a volume, these will be created as files.
   data:
-  myvalue: {{ .Values.index | quote }}
+  myvalue: {{ .Values.myvalue | quote }}
   test.txt: test
