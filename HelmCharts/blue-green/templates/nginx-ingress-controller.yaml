@@ -22,7 +22,7 @@ spec:
       containers:
         - args:
             - /nginx-ingress-controller
-            - "--default-backend-service=$(POD_NAMESPACE)/{{ $fullName }}-default-http-backend"
+            - "--default-backend-service=$(POD_NAMESPACE)/{{ include "java-app.fullname" . }}-default-http-backend"
           env:
             - name: POD_NAME
               valueFrom:
