@@ -17,4 +17,4 @@ spec:
     slot: green
     {{- else }}
     slot: blue
-    {{- end }}+
+    {{- end }}
