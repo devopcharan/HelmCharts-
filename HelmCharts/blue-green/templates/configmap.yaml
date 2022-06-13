@@ -5,6 +5,5 @@ metadata:
   name: {{ .Release.Name }}-configmap
 data:
   # When the config map is mounted as a volume, these will be created as files.
-  data:
   myvalue: {{ .Values.myvalue | quote }}
   test.txt: test
