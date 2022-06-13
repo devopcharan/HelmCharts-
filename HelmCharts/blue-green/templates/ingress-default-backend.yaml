@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: charanappp-default-http-backend
+  name: {{- include "java-app.labels" . }}-default-http-backend
 spec:
   replicas: 1
   selector:
