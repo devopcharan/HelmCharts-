@@ -32,5 +32,5 @@ spec:
       volumes:
         - name: wwwdata-volume
           configMap:
-            name: {{ include "java-app.fullname" . }}
+            name: {{- include "java-app.fullname" . }}
 {{ end }}
