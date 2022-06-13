@@ -1,6 +1,15 @@
+# This is a simple example of using a config map to create a single page static site.
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "java-app.fullname" . }}-blue
+  labels:
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app: {{- include "java-app.labels" . | nindent 4 }}
+  selector:
+    app: {{- include "java-app.selectorLabels" . | nindent 4 }}  
 data:
-  myvalue: "Hello World"
+  # When the config map is mounted as a volume, these will be created as files.
+  index.html: {{ .Values.index | quote }}
+  test.txt: test
