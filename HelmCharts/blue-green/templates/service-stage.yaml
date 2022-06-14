@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "java-app.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.servicegreen.type }}
+  type: ClusterIP
   ports:
     - port: {{ .Values.servicegreen.port }}
       targetPort: {{ .Values.servicegreen.targetport }}
