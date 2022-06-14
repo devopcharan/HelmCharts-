@@ -13,4 +13,4 @@ spec:
       name: http
   selector:
     {{- include "java-app.selectorLabels" . | nindent 4 }}
-    k8s-app: {{ include "java-app.fullname" . }}-nginx-ingress-lb
+    k8s-app: {{ include "java-app.fullname" . }}-ingress-lb
