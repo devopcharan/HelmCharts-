@@ -46,6 +46,6 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-         {{- end }}
+          {{- end }}
     {{- end }}
   {{ end }}
