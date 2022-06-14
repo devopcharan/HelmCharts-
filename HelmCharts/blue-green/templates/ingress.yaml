@@ -1,6 +1,8 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "java-app.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
+{{- $svcPort := .Values.serviceblue.port -}}
+{{- $svcPort := .Values.servicegreen.port -}}
+{{- $svcPort := .Values.servicelb.port -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -44,7 +46,10 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-          {{- end }}
-    {{- end }}
-  {{- end }}
+           {{- end }}
+         {{- end }}
+       {{-end }} 
+     {{- end }}
+   {{- end }}
+ {{- end }}
 {{- end }}
