@@ -7,8 +7,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: {{ .Values.loadbalancer.port }}
-      targetPort: {{ .Values.loadbalancer.targetport }}
+    - port: {{ .Values.servicelb.port }}
+      targetPort: {{ .Values.servicelb.targetport }}
       protocol: TCP
       name: http
   selector:
