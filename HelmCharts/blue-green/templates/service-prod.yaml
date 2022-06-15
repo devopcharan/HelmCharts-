@@ -1,3 +1,4 @@
+{{- if .Values.service.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -14,3 +15,9 @@ spec:
   selector:
     {{- include "java-app.selectorLabels" . | nindent 4 }}
     slot: {{ .Values.productionSlot }}
+  {{- with .Values.serviceAccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }} 
+    
