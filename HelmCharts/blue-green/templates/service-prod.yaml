@@ -14,7 +14,6 @@ spec:
       name: http
   selector:
     {{- include "java-app.selectorLabels" . | nindent 4 }}
-    slot: {{ .Values.productionSlot }}
   {{- with .Values.serviceAccount.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
