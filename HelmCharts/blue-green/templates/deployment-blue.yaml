@@ -37,8 +37,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: {{ .Values.env.name }}
+            - name: {{ .Values.env.name1 }}
               value: {{ .Values.env.value1 }}
+            - name: {{ .Values.env.name2 }}
+              value: {{ .Values.env.value2 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
