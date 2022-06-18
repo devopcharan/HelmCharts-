@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: {{ include "java-app.fullname" . }}-green
   labels:
-    {{- include "java-app.labels" . | nindent 4 }}
+    app: {{- include "java-app.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
