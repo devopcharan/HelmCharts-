@@ -11,7 +11,8 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "java-app.selectorLabels" . | nindent 6 }}
+      app: {{- include "java-app.selectorLabels" . | nindent 6 }}
+      version: v2.0.0
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -19,7 +20,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "java-app.selectorLabels" . | nindent 8 }}
+        app: {{- include "java-app.selectorLabels" . | nindent 8 }}
+        version: v2.0.0
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
