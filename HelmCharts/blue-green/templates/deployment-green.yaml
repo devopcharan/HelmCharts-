@@ -38,7 +38,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: {{ .Values.env.name }}
-              value: {{ .Values.env.valuee }}
+              value: {{ .Values.env.value2 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
