@@ -39,8 +39,8 @@ spec:
           env:
             - name: {{ .Values.env.name3 }}
               value: {{ .Values.env.value3 }}
-            -  name: {{ .Values.env.name4 }}
-               value: {{ .Values.env.value4 }}  
+            - name: {{ .Values.env.name4 }}
+              value: {{ .Values.env.value4 }}  
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
