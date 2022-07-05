@@ -45,7 +45,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
+        nodename: {{.Values.nodeSelector.nodename }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
