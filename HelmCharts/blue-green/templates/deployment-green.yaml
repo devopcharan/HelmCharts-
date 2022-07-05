@@ -42,9 +42,8 @@ spec:
             - name: {{ .Values.env.name4 }}
               value: {{ .Values.env.value4 }}  
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-     nodeSelector:
+            {{- toYaml .Values.resources | nindent 12 }
+      nodeSelector:
         nodename: {{.Values.nodeSelector.nodename }}
       {{- end }}
       {{- with .Values.affinity }}
