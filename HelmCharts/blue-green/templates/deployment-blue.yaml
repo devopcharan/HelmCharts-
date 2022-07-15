@@ -73,5 +73,4 @@ spec:
     {{- include "java-app.selectorLabels" . | nindent 4 }}
     version: v1.0.0
     {{- end }}
-{{ end }}    
          
