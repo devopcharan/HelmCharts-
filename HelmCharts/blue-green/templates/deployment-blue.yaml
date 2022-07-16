@@ -55,22 +55,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "java-app.fullname" . }}
-  labels:
-    {{- include "java-app.labels" . | nindent 4 }}
-spec:
-  type: ClusterIP
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetport }}
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "java-app.selectorLabels" . | nindent 4 }}
-    version: v1.0.0
-    {{- end }}
-         
